@@ -1,0 +1,16 @@
+<!-- blog/templates/blog/post/detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }}</title>
+</head>
+<body>
+    <h1>{{ post.title }}</h1>
+    <p><strong>Published:</strong> {{ post.publish }}</p>
+    <p>{{ post.body }}</p>
+    <p><strong>Status:</strong> {{ post.status }}</p>
+    <a href="{% url 'post_list' %}">Back to Post List</a>
+</body>
+</html>
