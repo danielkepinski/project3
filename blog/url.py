@@ -1,7 +1,7 @@
-from django.urls import path
-from . import views
+from django.contrib import admin
+from django.urls import path, include
 
 urlpatterns = [
-    path('', views.post_list, name='post_list'),  # List of all published posts
-    path('<int:id>/', views.post_detail, name='post_detail'),  # Single post detail page
+    path('admin/', admin.site.urls),
+    path('blog/', include('blog.urls')),  # Include blog app URLs
 ]
