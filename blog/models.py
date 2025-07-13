@@ -2,34 +2,47 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
+# Custom model manager to return only published posts
+class PublishedManager(models.Manager):
+    def get_queryset(self):
+        return (
+            super().get_queryset().filter(status=Post.Status.PUBLISHED)
+        )
+
 class Post(models.Model):
+    # Enum-like class for post status choices
     class Status(models.TextChoices):
         DRAFT = 'DF', 'Draft'
         PUBLISHED = 'PB', 'Published'
 
+    # Post fields
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250)
     author = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name='blog_posts',
-        default=1  # This will use the user with ID 1 (or any other valid user ID)
+        settings.AUTH_USER_MODEL,        # Links to Django's built-in User model
+        on_delete=models.CASCADE,        # If user is deleted, their posts are too
+        related_name='blog_posts',       # Allows reverse access like: user.blog_posts.all()
+        default=1                        # Temporary default to avoid migration error
     )
     body = models.TextField()
     publish = models.DateTimeField(default=timezone.now)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)  # Timestamp when created
+    updated = models.DateTimeField(auto_now=True)      # Timestamp when last updated
     status = models.CharField(
         max_length=2,
-        choices=Status,
+        choices=Status.choices,           # Limit input to Status choices
         default=Status.DRAFT
     )
 
+    # Managers
+    objects = models.Manager()            # Default manager
+    published = PublishedManager()        # Custom manager for published posts
+
     class Meta:
-        ordering = ['-publish']
+        ordering = ['-publish']           # Newest posts first
         indexes = [
-            models.Index(fields=['-publish']),
+            models.Index(fields=['-publish']),  # Improves query performance
         ]
 
     def __str__(self):
-        return self.title
+        return self.title                 # Human-readable string for the model
