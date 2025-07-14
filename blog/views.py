@@ -1,12 +1,36 @@
-from django.core.mail import send_mail
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from django.shortcuts import get_object_or_404, render
 from django.views.decorators.http import require_POST
 from django.views.generic import ListView
-from taggit.models import Tag  # Added for tag filtering
-
+from django.db.models import Count  # Importing Count for similar posts
+from django.core.mail import send_mail
+from django.conf import settings
+from django.shortcuts import render, get_object_or_404
 from .models import Post
-from .forms import CommentForm, EmailPostForm
+
+from taggit.models import Tag
+
+from .forms import CommentForm
+
+# function for the share view
+def post_share(request, post_id):
+    # Retrieve the post by its ID
+    post = get_object_or_404(Post, id=post_id, status=Post.Status.PUBLISHED)
+    
+    # Handle the form submission (for example, sharing via email)
+    # (You could also implement a URL to share, or social media integration)
+    
+    # Placeholder for sharing functionality: send email with the post link
+    if request.method == 'POST':
+        # Assuming the form includes a field for email
+        email = request.POST.get('email')
+        if email:
+            subject = f"Check out this post: {post.title}"
+            message = f"Here's a link to the post: {post.get_absolute_url()}"
+            send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [email])
+            return render(request, 'blog/post/share_done.html', {'post': post})
+    
+    # Render the share form (you can create a simple form in the template for email submission)
+    return render(request, 'blog/post/share.html', {'post': post})
 
 
 # Class-based view to list posts with pagination
@@ -56,9 +80,9 @@ def post_detail(request, year, month, day, post):
         publish__month=month,
         publish__day=day
     )
-    #list of active comments for the post
+    # List of active comments for the post
     comments = post.comments.filter(active=True)
-    # form for users to comment on the post
+    # Form for users to comment on the post
     form = CommentForm()
 
     # List of similar posts based on shared tags
@@ -77,7 +101,8 @@ def post_detail(request, year, month, day, post):
         {
             'post': post,
             'comments': comments,
-            'form': form
+            'form': form,
+            'similar_posts': similar_posts  # Adding similar posts to the context
         }
     )
 
