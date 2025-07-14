@@ -6,6 +6,7 @@ app_name = 'blog'
 urlpatterns = [
     # Post list view
     path('', views.post_list, name='post_list'),
+    path('', views.PostListView.as_view(), name='post_list'),
 
     # Post detail view with date and slug
     path(
