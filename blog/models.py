@@ -1,13 +1,12 @@
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 
 # Custom model manager to return only published posts
 class PublishedManager(models.Manager):
     def get_queryset(self):
-        return (
-            super().get_queryset().filter(status=Post.Status.PUBLISHED)
-        )
+        return super().get_queryset().filter(status=Post.Status.PUBLISHED)
 
 class Post(models.Model):
     # Enum-like class for post status choices
@@ -17,7 +16,7 @@ class Post(models.Model):
 
     # Post fields
     title = models.CharField(max_length=250)
-    slug = models.SlugField(max_length=250)
+    slug = models.SlugField(max_length=250, unique_for_date='publish')
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,        # Links to Django's built-in User model
         on_delete=models.CASCADE,        # If user is deleted, their posts are too
@@ -46,3 +45,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title                 # Human-readable string for the model
+
+    def get_absolute_url(self):
+        return reverse(
+            'blog:post_detail',
+            args=[self.id]
+        )

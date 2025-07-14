@@ -1,22 +1,24 @@
-<!-- blog/templates/blog/post/list.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Posts</title>
-</head>
-<body>
-    <h1>Blog Posts</h1>
-    <ul>
-        {% for post in posts %}
-            <li>
-                <a href="{% url 'post_detail' post.id %}">{{ post.title }}</a>
-                <p>{{ post.publish }}</p>
-            </li>
-        {% empty %}
-            <p>No posts found.</p>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends "blog/base.html" %}
+
+{% block title %}My Blog{% endblock %}
+
+{% block content %}
+  <h1>My Blog</h1>
+  {% for post in posts %}
+    <article>
+      <h2>
+        <a href="{{ post.get_absolute_url }}">
+          {{ post.title }}
+        </a>
+      </h2>
+      <p class="date">
+        Published {{ post.publish }} by {{ post.author }}
+      </p>
+      <div class="body">
+        {{ post.body|truncatewords:30|linebreaks }}
+      </div>
+    </article>
+  {% empty %}
+    <p>No posts available.</p>
+  {% endfor %}
+{% endblock %}

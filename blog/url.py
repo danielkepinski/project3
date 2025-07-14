@@ -1,7 +1,16 @@
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
+from . import views
+
+app_name = 'blog'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('blog/', include('blog.urls')),  # Include blog app URLs
+    # Post list view
+    path('', views.post_list, name='post_list'),
+
+    # Post detail view with date and slug
+    path(
+        '<int:year>/<int:month>/<int:day>/<slug:post>/',
+        views.post_detail,
+        name='post_detail'
+    ),
 ]
