@@ -47,7 +47,14 @@ class Post(models.Model):
         return self.title                 # Human-readable string for the model
 
     def get_absolute_url(self):
-        return reverse(
-            'blog:post_detail',
-            args=[self.id]
-        )
+    return reverse(
+        'blog:post_detail',
+        args=[
+            self.publish.year,
+            self.publish.month,
+            self.publish.day,
+            self.slug
+        ]
+    )
+    # Returns the URL for the post detail view
+    # Uses Django's reverse function to generate the URL based on the view name and post attributes

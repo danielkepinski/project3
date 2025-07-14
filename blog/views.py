@@ -12,15 +12,19 @@ def post_list(request):
     )
 
 # View to display a single post's details
-def post_detail(request, id):
-    # Try to retrieve a single post by ID and status
+
+def post_detail(request, year, month, day, post):
     post = get_object_or_404(
         Post,
-        id=id,
-        status=Post.Status.PUBLISHED
+        status=Post.Status.PUBLISHED,
+        slug=post,
+        publish__year=year,
+        publish__month=month,
+        publish__day=day
     )
     return render(
         request,
-        'blog/post/detail.html',  # Template path
-        {'post': post}            # Context dictionary
+        'blog/post/detail.html',
+        {'post': post}
     )
+
