@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
+from taggit.managers import TaggableManager 
 
 # Custom model manager to return only published posts
 class PublishedManager(models.Manager):
@@ -37,6 +38,9 @@ class Post(models.Model):
     objects = models.Manager()            # Default manager
     published = PublishedManager()        # Custom manager for published posts
 
+
+    tags = TaggableManager()              # Allows tagging of posts
+
     class Meta:
         ordering = ['-publish']           # Newest posts first
         indexes = [
@@ -62,7 +66,7 @@ class Post(models.Model):
     # Uses Django's reverse function to generate the URL based on the view name and post attributes
 
 
-    
+
 # Model to store comments on posts
 class Comment(models.Model):                
     post = models.ForeignKey(
