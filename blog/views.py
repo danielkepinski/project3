@@ -38,6 +38,23 @@ def post_detail(request, year, month, day, post):
         publish__month=month,
         publish__day=day
     )
+    # Get active comments
+    comments = post.comments.filter(active=True)
+    # Empty comment form
+    form = CommentForm()
+
+    return render(
+        request,
+        'blog/post/detail.html',
+        {
+            'post': post,
+            'comments': comments,
+            'form': form
+        }
+    )
+
+
+    
     return render(request, 'blog/post/detail.html', {'post': post})
 
 # View to handle a submitted comment
