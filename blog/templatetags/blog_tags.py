@@ -1,8 +1,20 @@
 from django import template
 from blog.models import Post
 from django.db.models import Count
+import markdown
+from django import template
+from django.utils.safestring import mark_safe
 
 register = template.Library()
+
+#custom template tag for markdown formatting
+@register.filter(name='markdown')
+def markdown_format(text):
+    """
+    Convert plain text using Markdown and mark it as safe HTML.
+    """
+    return mark_safe(markdown.markdown(text))
+
 
 # Custom template tag to get the latest posts
 @register.simple_tag
