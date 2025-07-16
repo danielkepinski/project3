@@ -39,15 +39,23 @@ def post_search(request):
     query = None
     results = []
 
+    
     if 'query' in request.GET:
         form = SearchForm(request.GET)
         if form.is_valid():
             query = form.cleaned_data['query']
+            # build a weighted search vector
+            search_vector = (
+                SearchVector('title', weight='A') +
+                SearchVector('body',  weight='B')
+            )
+            search_query  = SearchQuery(query)
+            # annotate each Post with a rank and filter/order by it
             results = (
-                Post.published.annotate(
-                    search=SearchVector('title', 'body'),
-                )
-                .filter(search=query)
+                Post.published
+                    .annotate(search=search_vector, rank=SearchRank(search_vector, search_query))
+                    .filter(rank__gte=0.3)
+                    .order_by('-rank')
             )
 
     return render(
