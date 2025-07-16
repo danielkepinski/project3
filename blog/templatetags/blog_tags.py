@@ -1,36 +1,31 @@
-from django import template
-from blog.models import Post
-from django.db.models import Count
 import markdown
+from django import template
+from django.db.models import Count
 from django.utils.safestring import mark_safe
+
+from ..models import Post
 
 register = template.Library()
 
-#custom template tag for markdown formatting
-@register.filter(name='markdown')
-def markdown_format(text):
-    """
-    Convert plain text using Markdown and mark it as safe HTML.
-    """
-    return mark_safe(markdown.markdown(text))
+
+@register.simple_tag
+def total_posts():
+    return Post.published.count()
 
 
-# Custom template tag to get the latest posts
+@register.inclusion_tag('blog/post/latest_posts.html')
+def show_latest_posts(count=5):
+    latest_posts = Post.published.order_by('-publish')[:count]
+    return {'latest_posts': latest_posts}
+
+
 @register.simple_tag
 def get_most_commented_posts(count=5):
     return Post.published.annotate(
         total_comments=Count('comments')
     ).order_by('-total_comments')[:count]
 
-    """Return the most commented posts."""
-    return Post.published.annotate(num_comments=Count('comments')).order_by('-num_comments')[:count]
 
-@register.simple_tag
-def latest_posts(count=3):
-    """Return the latest 'count' published posts."""
-    return Post.published.all()[:count]
-
-@register.inclusion_tag('blog/post/latest_posts.html')
-def show_latest_posts(count=5):
-    latest_posts = Post.published.order_by('-publish')[:count]
-    return {'latest_posts': latest_posts}
+@register.filter(name='markdown')
+def markdown_format(text):
+    return mark_safe(markdown.markdown(text))
