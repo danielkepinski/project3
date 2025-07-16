@@ -9,6 +9,7 @@ from .models import Post, Comment
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from taggit.models import Tag
 from .forms import EmailPostForm, CommentForm, SearchForm
+from django.contrib.postgres.search import TrigramSimilarity
 
 # Function-based view for sharing a post via email
 def post_share(request, post_id):
@@ -131,10 +132,11 @@ def post_search(request):
             )
             search_query = SearchQuery(query)
             results = (
-                Post.published
-                    .annotate(search=search_vector, rank=SearchRank(search_vector, search_query))
-                    .filter(rank__gte=0.3)
-                    .order_by('-rank')
+                Post.published.annotate(
+                    similarity=TrigramSimilarity('title', query)
+                )
+                .filter(similarity__gt=0.1)
+                .order_by('-similarity')
             )
 
     return render(request, 'blog/post/search.html', {
