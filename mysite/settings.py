@@ -68,10 +68,15 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 #https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT', default='5432'),
     }
+}
 
 #https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
