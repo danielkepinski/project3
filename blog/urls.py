@@ -1,6 +1,21 @@
 from django.urls import path
 from . import views
 from .feeds import LatestPostsFeed
+from .forms import CommentForm
+from django.shortcuts import render, get_object_or_404, redirect
+ 
+ #add comment
+def add_comment(request, post_pk):
+    post = get_object_or_404(Post, pk=post_pk)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.save()
+            return redirect(post)
+    else:
+        form = CommentForm()
 
 app_name = 'blog'
 
@@ -22,9 +37,6 @@ urlpatterns = [
     ),
     path('feed/', LatestPostsFeed(), name='post_feed'),
     path('search/', views.post_search, name='post_search'),
-    
-    # Add comment
-    path('post/<int:post_pk>/comment/', views.add_comment, name='add_comment'),
 
     # Delete comment
     path('comment/delete/<int:pk>/', views.delete_comment, name='delete_comment'),
