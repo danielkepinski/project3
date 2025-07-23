@@ -1,1 +1,1 @@
-web: gunicorn dansblog.wsgi
+web: gunicorn danblog.wsgi
