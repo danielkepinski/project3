@@ -20,6 +20,8 @@ def add_comment(request, post_pk):
 app_name = 'blog'
 
 urlpatterns = [
+    #home page
+    path('base.html', views.home, name='home'),
     # Post views
     path('', views.post_list, name='post_list'),
     # path('', views.PostListView.as_view(), name='post_list'),
