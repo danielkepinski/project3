@@ -11,9 +11,7 @@ from .forms import CommentForm, EmailPostForm, PostForm, SearchForm
 from .models import Post, Comment
 
 def home(request):
-    return render(request, "base.html")
-
-
+    return render(request, "blog/base.html")
 
 def post_list(request, tag_slug=None):
     post_list = Post.published.all()
