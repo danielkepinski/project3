@@ -21,7 +21,7 @@ app_name = 'blog'
 
 urlpatterns = [
     #home page
-    path('base.html', views.home, name='home'),
+    path('', views.home, name='blog-home'),
     # Post views
     path('', views.post_list, name='post_list'),
     # path('', views.PostListView.as_view(), name='post_list'),
