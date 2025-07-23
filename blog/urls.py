@@ -37,7 +37,10 @@ urlpatterns = [
     ),
     path('feed/', LatestPostsFeed(), name='post_feed'),
     path('search/', views.post_search, name='post_search'),
+    
+    # Add comment
+    #path('post/<int:post_pk>/comment/', views.add_comment, name='add_comment'),
 
     # Delete comment
-    path('comment/delete/<int:pk>/', views.delete_comment, name='delete_comment'),
+    #path('comment/delete/<int:pk>/', views.delete_comment, name='delete_comment'),
 ]
