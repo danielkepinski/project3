@@ -22,7 +22,6 @@ from django.views.decorators.http import require_POST
 from django.views.generic import ListView
 from taggit.models import Tag
 
-from .forms import CommentForm, EmailPostForm, PostForm, SearchForm
 from .models import Post, Comment
 
 
