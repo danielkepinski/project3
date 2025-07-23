@@ -23,6 +23,7 @@ ALLOWED_HOSTS = config(
     'ALLOWED_HOSTS',
     default='localhost,127.0.0.1,.herokuapp.com',
     cast=lambda v: [s.strip() for s in v.split(',')]
+)
 SITE_ID = 1
 # Application definition
 INSTALLED_APPS = [
