@@ -10,6 +10,8 @@ from taggit.models import Tag
 from .forms import CommentForm, EmailPostForm, PostForm, SearchForm
 from .models import Post, Comment
 
+def home(request):
+    return HttpResponse("<h1>Blog Home</h1>")
 
 def post_list(request, tag_slug=None):
     post_list = Post.published.all()
