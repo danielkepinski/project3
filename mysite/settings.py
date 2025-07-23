@@ -8,7 +8,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 from pathlib import Path
-from decouple import config
+from decouple import config, UndefinedValueError
 import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -67,9 +67,17 @@ TEMPLATES = [
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 #https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+try:
+    # Try to get DATABASE_URL from environment (Heroku sets this)
+    DATABASE_URL = config('DATABASE_URL')
+except UndefinedValueError:
+    # Fallback: use your full database URI as a default
+    DATABASE_URL = 'postgres://ugta36lvs2e7j:p832b029be103ec1bdf3d54fa72567ea3cbf705804f2bdfa67a591312eb30b74f@c2fbt7u7f4htth.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com:5432/dd4piut13g9jf8'
+
 DATABASES = {
-    'default': dj_database_url.config(default=config('DATABASE_URL'))
+    'default': dj_database_url.config(default=DATABASE_URL)
 }
+
 #DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.postgresql',
