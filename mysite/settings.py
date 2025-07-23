@@ -6,6 +6,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
+
 import os
 from pathlib import Path
 from decouple import config, UndefinedValueError
@@ -15,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('SECRET_KEY')
 
-DEBUG = True
+DEBUG = config('DEBUG', default=True, cast=bool)
 
 ALLOWED_HOSTS = config(
     'ALLOWED_HOSTS',
@@ -23,8 +24,6 @@ ALLOWED_HOSTS = config(
     cast=lambda v: [host.strip() for host in v.split(',')]
 )
 
-SITE_ID = 1
-# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,6 +37,7 @@ INSTALLED_APPS = [
     'taggit',
     'blog.apps.BlogConfig',
 ]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -48,7 +48,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 ROOT_URLCONF = 'mysite.urls'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -64,32 +66,25 @@ TEMPLATES = [
         },
     },
 ]
+
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
-#https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+# Database configuration
 try:
-    # Try to get DATABASE_URL from environment (Heroku sets this)
     DATABASE_URL = config('DATABASE_URL')
 except UndefinedValueError:
-    # Fallback: use your full database URI as a default
-    DATABASE_URL = 'postgres://ugta36lvs2e7j:p832b029be103ec1bdf3d54fa72567ea3cbf705804f2bdfa67a591312eb30b74f@c2fbt7u7f4htth.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com:5432/dd4piut13g9jf8'
+    # Fallback to local SQLite for development
+    DATABASE_URL = f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
 
 DATABASES = {
-    'default': dj_database_url.config(default=DATABASE_URL)
+    'default': dj_database_url.config(
+        default=DATABASE_URL,
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': config('DB_NAME'),
-#        'USER': config('DB_USER'),
-#        'PASSWORD': config('DB_PASSWORD'),
-#        'HOST': config('DB_HOST'),
-#        'PORT': config('DB_PORT', default='5432'),
-#    }
-#}
-
-#https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
+# Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -105,32 +100,27 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-    #https://docs.djangoproject.com/en/5.0/topics/i18n/
+# Internationalization
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-#https://docs.djangoproject.com/en/5.0/howto/static-files/
+# Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-#https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
+
+# Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-# Email settings
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Email configuration
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='webmaster@localhost')
- 
-# Security settings for production
+
+# Security settings
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
- 
-# For Heroku deployment
-import dj_database_url
-DATABASES['default'] = dj_database_url.config(
-    default=f"postgresql://{config('DB_USER')}:{config('DB_PASSWORD')}@{config('DB_HOST')}:{config('DB_PORT', default='5432')}/{config('DB_NAME')}"
-)
