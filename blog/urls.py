@@ -23,7 +23,7 @@ urlpatterns = [
     #home page
     path('', views.home, name='blog-home'),
     # Post views
-    path('', views.post_list, name='post_list'),
+    #path('', views.post_list, name='post_list'),
     # path('', views.PostListView.as_view(), name='post_list'),
     path(
         'tag/<slug:tag_slug>/', views.post_list, name='post_list_by_tag'
