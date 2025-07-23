@@ -12,7 +12,17 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ['name', 'email', 'body']
 
+ 
+class EmailPostForm(forms.Form):
+    name = forms.CharField(max_length=25)
+    email = forms.EmailField()
+    to = forms.EmailField()
+    comments = forms.CharField(required=False, widget=forms.Textarea)
+ 
+class SearchForm(forms.Form):
+    query = forms.CharField()
 
+    
 from django.contrib.postgres.search import TrigramSimilarity
 from django.core.mail import send_mail
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
@@ -23,6 +33,7 @@ from django.views.generic import ListView
 from taggit.models import Tag
 
 from .models import Post, Comment
+
 
 
 # Add Comment
