@@ -20,29 +20,22 @@ def add_comment(request, post_pk):
 app_name = 'blog'
 
 urlpatterns = [
-    #home page
+    # Set homepage to 'home' view that renders base.html
     path('', views.home, name='blog-home'),
-    # Post views
-    #path('', views.post_list, name='post_list'),
-    # path('', views.PostListView.as_view(), name='post_list'),
-    path(
-        'tag/<slug:tag_slug>/', views.post_list, name='post_list_by_tag'
-    ),
-    path(
-        '<int:year>/<int:month>/<int:day>/<slug:post>/',
-        views.post_detail,
-        name='post_detail',
-    ),
-    path('<int:post_id>/share/', views.post_share, name='post_share'),
-    path(
-        '<int:post_id>/comment/', views.post_comment, name='post_comment'
-    ),
-    path('feed/', LatestPostsFeed(), name='post_feed'),
-    path('search/', views.post_search, name='post_search'),
-    
-    # Add comment
-    #path('post/<int:post_pk>/comment/', views.add_comment, name='add_comment'),
 
-    # Delete comment
-    #path('comment/delete/<int:pk>/', views.delete_comment, name='delete_comment'),
+    # Post views
+    path('tag/<slug:tag_slug>/', views.post_list, name='post_list_by_tag'),
+    path('<int:year>/<int:month>/<int:day>/<slug:post>/', views.post_detail, name='post_detail'),
+    path('<int:post_id>/share/', views.post_share, name='post_share'),
+    path('<int:post_id>/comment/', views.post_comment, name='post_comment'),
+
+    # RSS feed
+    path('feed/', LatestPostsFeed(), name='post_feed'),
+
+    # Search
+    path('search/', views.post_search, name='post_search'),
+
+    # Add comment (commented out here, add if needed)
+    # path('post/<int:post_pk>/comment/', views.add_comment, name='add_comment'),
+    # path('comment/delete/<int:pk>/', views.delete_comment, name='delete_comment'),
 ]
