@@ -14,6 +14,7 @@ sitemaps = {
 }
 
 urlpatterns = [
+    
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')),  # Ensure blog/urls.py exists
     path('account/', include('django.contrib.auth.urls')),
