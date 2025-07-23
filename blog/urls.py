@@ -1,10 +1,13 @@
-from django.urls import path
+from django.urls import path, include
+from django.contrib import admin
 from . import views
 from .feeds import LatestPostsFeed
 from .forms import CommentForm
 from django.shortcuts import render, get_object_or_404, redirect
- 
- #add comment
+from .models import Post  # <-- you must import Post for add_comment
+
+
+# Add comment view (you might want to keep or move this to views.py)
 def add_comment(request, post_pk):
     post = get_object_or_404(Post, pk=post_pk)
     if request.method == 'POST':
@@ -16,11 +19,17 @@ def add_comment(request, post_pk):
             return redirect(post)
     else:
         form = CommentForm()
+    # You should return a response in the 'else' case, example:
+    return render(request, 'your_comment_form_template.html', {'form': form})
+
 
 app_name = 'blog'
 
+
 urlpatterns = [
-    # Set homepage to 'home' view that renders base.html
+    # Remove admin path from here!
+
+    # Your app URLs:
     path('', views.home, name='blog-home'),
 
     # Post views
@@ -35,7 +44,6 @@ urlpatterns = [
     # Search
     path('search/', views.post_search, name='post_search'),
 
-    # Add comment (commented out here, add if needed)
-    # path('post/<int:post_pk>/comment/', views.add_comment, name='add_comment'),
-    # path('comment/delete/<int:pk>/', views.delete_comment, name='delete_comment'),
+    # You can enable comment adding here if needed
+    # path('post/<int:post_pk>/comment/', add_comment, name='add_comment'),
 ]
