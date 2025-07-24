@@ -66,7 +66,7 @@ def post_detail(request, year, month, day, post):
 
     return render(
         request,
-        'blog/templates/blog/post_detail.html',
+        'blog/post_detail.html',
         {
             'post': post,
             'comments': comments,
