@@ -136,29 +136,22 @@ def post_share(request, post_id):
 
 @require_POST
 def post_comment(request, post_id):
-    post = get_object_or_404(
-        Post,
-        id=post_id,
-        status=Post.Status.PUBLISHED
-    )
+    post = get_object_or_404(Post, id=post_id, status=Post.Status.PUBLISHED)
+    form = CommentForm(request.POST)
     comment = None
-    # A comment was posted
-    form = CommentForm(data=request.POST)
+    
     if form.is_valid():
-        # Create a Comment object without saving it to the database
         comment = form.save(commit=False)
-        # Assign the post to the comment
-        comment.post = post
-        # Save the comment to the database
+        comment.post = post  # Assign the post to the comment
         comment.save()
+        # After saving the comment, redirect to the post detail page
+        return redirect(post.get_absolute_url())
+    
+    # If the form is not valid, return the form with errors
     return render(
         request,
         'blog/post/comment.html',
-        {
-            'post': post,
-            'form': form,
-            'comment': comment
-        },
+        {'post': post, 'form': form, 'comment': comment}
     )
 
 
