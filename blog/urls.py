@@ -27,9 +27,8 @@ app_name = 'blog'
 
 
 urlpatterns = [
-    # Remove admin path from here!
-
-    # Your app URLs:
+    #app URLs:
+    path('admin/', admin.site.urls),
     path('', views.home, name='blog-home'),
 
     # Post views
