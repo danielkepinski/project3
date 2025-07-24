@@ -136,22 +136,30 @@ def post_share(request, post_id):
 
 @require_POST
 def post_comment(request, post_id):
-    post = get_object_or_404(Post, id=post_id, status=Post.Status.PUBLISHED)
-    form = CommentForm(request.POST)
+    post = get_object_or_404(
+        Post,
+        id=post_id,
+        status=Post.Status.PUBLISHED
+    )
     comment = None
-    
+    form = CommentForm(data=request.POST)
     if form.is_valid():
+        # Create a Comment object without saving it to the database
         comment = form.save(commit=False)
-        comment.post = post  # Assign the post to the comment
+        comment.post = post  # Associate the comment with the post
         comment.save()
-        # After saving the comment, redirect to the post detail page
-        return redirect(post.get_absolute_url())
-    
-    # If the form is not valid, return the form with errors
+
     return render(
         request,
-        'blog/post/comment.html',
-        {'post': post, 'form': form, 'comment': comment}
+        'blog/post_detail.html',  # Re-render the post detail page
+        {
+            'post': post,
+            'comments': post.comments.filter(active=True),
+            'form': form,
+            'comment': comment,  # Add the newly created comment to the context
+            'similar_posts': post.similar_posts(),  # Or any method to fetch similar posts
+        },
+    )
     )
 
 
