@@ -160,7 +160,7 @@ def post_comment(request, post_id):
             'similar_posts': post.similar_posts(),  # Or any method to fetch similar posts
         },
     )
-    )
+    
 
 
 def post_search(request):
