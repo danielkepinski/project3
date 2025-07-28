@@ -37,16 +37,10 @@
     <p>There are no comments yet.</p>
   {% endfor %}
 
-   <h3>Add a comment</h3>
+  <h3>Leave a comment</h3>
   <form method="post" action="{% url 'blog:post_comment' post.id %}">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Submit Comment</button>
   </form>
-  {% if comment %}
-    <h2>Your comment has been added.</h2>
-    <p><a href="{{ post.get_absolute_url }}">Back to the post</a></p>
-  {% else %}
-    {% include "blog/post/comment_form.html" %}
-  {% endif %}
 {% endblock %}
