@@ -40,7 +40,20 @@
   <h3>Leave a comment</h3>
   <form method="post" action="{% url 'blog:post_comment' post.id %}">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit Comment</button>
+    <p>
+      {{ form.name.label_tag }}<br>
+      {{ form.name }}
+    </p>
+    <p>
+      {{ form.email.label_tag }}<br>
+      {{ form.email }}
+    </p>
+    <p>
+      {{ form.body.label_tag }}<br>
+      {{ form.body }}
+    </p>
+    <p>
+      <button type="submit">Submit Comment</button>
+    </p>
   </form>
 {% endblock %}
