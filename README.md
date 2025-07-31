@@ -330,8 +330,8 @@ You now have a local copy of the project to work with.
 - Admin actions (CRUD) work
 
 lighthouse score
-![lighthouse screenshot](./blog/Readme/images/lighthouse.png)
-The score is also perfect, they think the colours dont contrast enough
+![lighthouse screenshot](./blog/Readme/images/lighthouse.png)<br>
+The score is almost perfect, lighthouse says the colours dont contrast enough
 
 
 
