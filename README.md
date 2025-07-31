@@ -1,7 +1,7 @@
 
 # DansBlog
 
-![Welcome to DansBlog]()
+![Welcome to DansBlog](https://danblog-1322f2bf100e.herokuapp.com/)
 
 DansBlog was created as my third milestone project for the Code Institute’s Level 5 Diploma in Web Application Development. The project demonstrates a simple, personal blog built using Django, with CRUD functionality for comments, tag filtering, and admin control.
 
@@ -355,10 +355,12 @@ Basic tests were added to validate models and views:
 
 Tests were run using:
 
-```bash
+bash
 python manage.py test
 
 ![screenshot of python tests passing](./blog/Readme/images/testspy.png)
+
+
 
 ## Credits
 
