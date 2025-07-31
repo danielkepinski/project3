@@ -5,7 +5,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <!--meta tags for search engines-->
+  <meta name="description" content="blog, lifestyle, mylife, football">
+  <meta name="keywords" content="blog, lifestyle, mylife, football">
+  <title>Dansblog</title>
+  <!--favicons-->
+  <link rel="apple-touch-icon" sizes="180x180" href="blog\static\favicons\apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="blog\static\favicons\favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="blog\static\favicons\favicon-16x16.png">
 </head>
 <body>
   
@@ -13,7 +20,7 @@
 </html>
 <head>
   <title>{% block title %}{% endblock %}</title>
-  <link href="{% static "css/blog.css" %}" rel="stylesheet">
+  <link href="{% static 'css/blog.css' %}" rel="stylesheet">
 </head>
 <body>
   <div id="content">
