@@ -352,6 +352,7 @@ Tested with DevTools at mobile/tablet/desktop breakpoints
 | Hover color not applying to links | Added explicit CSS rules for `a:hover` |
 | Static files not loading on Heroku | Added `Whitenoise` and configured `STATIC_ROOT` |
 | Comments submitted without name/email | Added form validation and error display |
+| Contrast errors on links (.a styling) made blue darker from #0079d3 to #005999 |
 
 ### Automated Testing
 
