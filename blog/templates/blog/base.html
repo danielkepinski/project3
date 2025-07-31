@@ -5,21 +5,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!--meta tags for search engines-->
+  <!-- Meta tags for search engines -->
   <meta name="description" content="blog, lifestyle, mylife, football">
   <meta name="keywords" content="blog, lifestyle, mylife, football">
-  <title>Dansblog</title>
-  <!--favicons-->
-  <link rel="apple-touch-icon" sizes="180x180" href="blog\static\favicons\apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="blog\static\favicons\favicon-16x16.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="blog\static\favicons\favicon-16x16.png">
-</head>
-<body>
   
-</body>
-</html>
-<head>
-  <title>{% block title %}{% endblock %}</title>
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicons/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicons/favicon-16x16.png' %}">
+  <link rel="shortcut icon" href="{% static 'favicons/favicon.ico' %}">
+  
+  <title>{% block title %}Dansblog{% endblock %}</title>
   <link href="{% static 'css/blog.css' %}" rel="stylesheet">
 </head>
 <body>
@@ -34,7 +30,7 @@
       I've written {% total_posts %} posts so far.
     </p>
     <p>
-      <a href="{% url "blog:post_feed" %}">
+      <a href="{% url 'blog:post_feed' %}">
         Subscribe to my RSS feed
       </a>
     </p>
