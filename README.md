@@ -329,9 +329,12 @@ You now have a local copy of the project to work with.
 - Share form emails
 - Admin actions (CRUD) work
 
-lighthouse score
+lighthouse score<br>
 ![lighthouse screenshot](./blog/Readme/images/lighthouse.png)<br>
-The score is almost perfect, lighthouse says the colours dont contrast enough
+The score is almost perfect, lighthouse says the colours dont contrast enough<br>
+Wave test<br>
+![wave test screenshot](./blog/Readme/images/wave.png)<br>
+The alert is for a redundant link, however it does work and is relevent
 
 
 
