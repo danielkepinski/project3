@@ -1,7 +1,8 @@
 
 # DansBlog
 
-![Welcome to DansBlog](https://danblog-1322f2bf100e.herokuapp.com/)
+[Welcome to DansBlog](https://danblog-1322f2bf100e.herokuapp.com/)
+
 ![responsive mockup](./blog/Readme/images/responsive.png)
 
 DansBlog was created as my third milestone project for the Code Institute’s Level 5 Diploma in Web Application Development. The project demonstrates a simple, personal blog built using Django, with CRUD functionality for comments, tag filtering, and admin control.
@@ -310,10 +311,10 @@ This will create a copy of the repository in your own GitHub account.
 1. On your forked repository page, click the Code button.
 2. Copy the URL under HTTPS.
 3. Open your terminal and run:
-  ```bash
+  bash
   git clone https://github.com/your-username/dansblog.git
 4. Navigate into the directory:
-  ```bash
+  bash
   cd dansblog
 
 You now have a local copy of the project to work with.
