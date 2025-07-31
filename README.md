@@ -2,6 +2,7 @@
 # DansBlog
 
 ![Welcome to DansBlog](https://danblog-1322f2bf100e.herokuapp.com/)
+![responsive mockup](./blog/Readme/images/responsive.png)
 
 DansBlog was created as my third milestone project for the Code Institute’s Level 5 Diploma in Web Application Development. The project demonstrates a simple, personal blog built using Django, with CRUD functionality for comments, tag filtering, and admin control.
 
@@ -326,6 +327,12 @@ You now have a local copy of the project to work with.
 - Comments validate
 - Share form emails
 - Admin actions (CRUD) work
+
+lighthouse score
+![lighthouse screenshot](./blog/Readme/images/lighthouse.png)
+The score is also perfect, they think the colours dont contrast enough
+
+
 
 ### Responsiveness
 

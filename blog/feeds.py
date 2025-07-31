@@ -1,14 +1,12 @@
-import markdown
 from django.contrib.syndication.views import Feed
-from django.template.defaultfilters import truncatewords_html
-from django.urls import reverse_lazy
-
+from django.template.defaultfilters import truncatewords
+from django.urls import reverse
 from .models import Post
 
 class LatestPostsFeed(Feed):
-    title = 'My blog'
-    link = reverse_lazy('blog:post_list')
-    description = 'New posts of my blog.'
+    title = "My blog"
+    link = "/blog/posts/"
+    description = "New posts of my blog."
 
     def items(self):
         return Post.published.all()[:5]
@@ -17,8 +15,7 @@ class LatestPostsFeed(Feed):
         return item.title
 
     def item_description(self, item):
-        # Convert the body to HTML and truncate it
-        return truncatewords_html(markdown.markdown(item.body), 30)
+        return truncatewords(item.body, 30)
 
-    def item_pubdate(self, item):
-        return item.publish
+    def item_link(self, item):
+        return item.get_absolute_url()
