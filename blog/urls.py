@@ -16,6 +16,8 @@ urlpatterns = [
     # Homepage and post list
     path('', views.post_list, name='blog-home'),         # Homepage
     path('posts/', views.post_list, name='post_list'),   # For tests and direct nav
+    path('accounts/', include('django.contrib.auth.urls')),  # login/logout/password
+    path('accounts/', include('accounts.urls')), # custom registration
 
     # Tag filtering
     path('tag/<slug:tag_slug>/', views.post_list, name='post_list_by_tag'),
