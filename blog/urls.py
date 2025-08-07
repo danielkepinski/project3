@@ -10,28 +10,15 @@ from .models import Post
 app_name = 'blog'
 
 urlpatterns = [
-    # Admin interface
-    path('admin/', admin.site.urls),
-
-    # Homepage and post list
-    path('', views.post_list, name='blog-home'),         # Homepage
-    path('posts/', views.post_list, name='post_list'),   # For tests and direct nav
-    path('accounts/', include('django.contrib.auth.urls')),  # login/logout/password
-    path('accounts/', include('accounts.urls')), # custom registration
-    path('', views.home, name='blog-home'),  # Root URL points to blog's home view
-
-    # Tag filtering
+    urlpatterns = [
+    path('', views.post_list, name='blog-home'),
+    path('posts/', views.post_list, name='post_list'),
     path('tag/<slug:tag_slug>/', views.post_list, name='post_list_by_tag'),
 
-    # Post detail and actions
     path('<int:year>/<int:month>/<int:day>/<slug:post>/', views.post_detail, name='post_detail'),
     path('<int:post_id>/share/', views.post_share, name='post_share'),
     path('<int:post_id>/comment/', views.post_comment, name='post_comment'),
 
-    # RSS Feed
     path('feed/', LatestPostsFeed(), name='post_feed'),
-
-
-    # Search
     path('search/', views.post_search, name='post_search'),
 ]

@@ -10,10 +10,18 @@ sitemaps = {
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('blog/', include('blog.urls')),
-    path('', blog_views.home, name='home'),  # root URL points to blog's home view
-    path('accounts/', include('accounts.urls', namespace='accounts')),
-    path('account/', include('django.contrib.auth.urls')),
+
+    # Blog URLs
+    path('blog/', include('blog.urls', namespace='blog')),
+
+    # Root/home page points to blog home
+    path('', blog_views.post_list, name='blog-home'),
+
+    # Accounts and auth
+    path('accounts/', include('accounts.urls', namespace='accounts')),  # custom register view
+    path('accounts/', include('django.contrib.auth.urls')),  # login/logout/password views
+
+    # Sitemap
     path(
         'sitemap.xml',
         sitemap,
@@ -21,3 +29,4 @@ urlpatterns = [
         name='django.contrib.sitemaps.views.sitemap'
     ),
 ]
+
