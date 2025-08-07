@@ -41,7 +41,6 @@ class Post(models.Model):
         return reverse('blog:post_detail', args=[self.publish.year, self.publish.month, self.publish.day, self.slug])
 
 
-from django.contrib.auth.models import User  # Make sure this is at the top of your file
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
