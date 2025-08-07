@@ -12,7 +12,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')),
     path('', blog_views.home, name='home'),  # root URL points to blog's home view
-    path('accounts/', include('accounts.urls')),
+    path('accounts/', include('accounts.urls', namespace='accounts')),
     path('account/', include('django.contrib.auth.urls')),
     path(
         'sitemap.xml',

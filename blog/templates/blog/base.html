@@ -26,12 +26,12 @@
       <h1><a href="{% url 'blog:blog-home' %}">DansBlog</a></h1>
         <nav>
     {% if user.is_authenticated %}
-      <span>Welcome, {{ user.username }}!</span>
-      <a href="{% url 'logout' %}">Logout</a>
-    {% else %}
-      <a href="{% url 'login' %}">Login</a>
-      <a href="{% url 'register' %}">Register</a>
-    {% endif %}
+  <span>Welcome, {{ user.username }}!</span>
+  <a href="{% url 'accounts:logout' %}">Logout</a>
+{% else %}
+  <a href="{% url 'accounts:login' %}">Login</a>
+  <a href="{% url 'accounts:register' %}">Register</a>
+{% endif %}
   </nav>
     </header>
 
