@@ -24,6 +24,15 @@
   <body>
     <header>
       <h1><a href="{% url 'blog:blog-home' %}">DansBlog</a></h1>
+        <nav>
+    {% if user.is_authenticated %}
+      <span>Welcome, {{ user.username }}!</span>
+      <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+      <a href="{% url 'login' %}">Login</a>
+      <a href="{% url 'register' %}">Register</a>
+    {% endif %}
+  </nav>
     </header>
 
     <main id="content">
