@@ -128,3 +128,11 @@ DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='webmaster@localhost')
 # Security settings
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# Redirect to this URL after successful login
+LOGIN_REDIRECT_URL = 'blog-home'
+# Redirect to this URL when login is required but user isn't logged in
+LOGIN_URL = 'login'
+# Authentication redirects
+LOGIN_REDIRECT_URL = 'blog-home'
+LOGIN_URL = 'login'
