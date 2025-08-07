@@ -38,6 +38,7 @@ def edit_comment(request, comment_id):
 def delete_comment(request, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
 
+    # Only allow the user who made the comment to delete it
     if request.user != comment.user:
         return HttpResponseForbidden("You can't delete this comment.")
 
