@@ -32,6 +32,42 @@ h2 {
     color: #333;
 }
 
+/* Navigation Bar */
+nav {
+    background-color: #005999;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+}
+
+nav a:hover {
+    background-color: #004777;
+}
+
+/* User greeting text */
+nav span {
+    color: #f0f0f0;
+    margin-right: auto;
+    font-weight: 500;
+}
+
 /* Layout */
 #content {
     float: left;
@@ -164,6 +200,15 @@ input[type=submit]:hover {
 
     h1, h2 {
         font-size: 24px;
+    }
+        nav {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    nav a, nav span {
+        margin-bottom: 10px;
+        text-align: center;
     }
 }
 
