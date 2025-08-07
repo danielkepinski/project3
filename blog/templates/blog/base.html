@@ -29,8 +29,8 @@
   <span>Welcome, {{ user.username }}!</span>
   <a href="{% url 'accounts:logout' %}">Logout</a>
 {% else %}
-  <a href="{% url 'accounts:login' %}">Login</a>
-  <a href="{% url 'accounts:register' %}">Register</a>
+  <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
+  <a href="{% url 'accounts:register' %}"><i class="fa-solid fa-address-card"></i>Register</a>
 {% endif %}
   </nav>
     </header>
