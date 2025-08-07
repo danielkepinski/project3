@@ -10,6 +10,45 @@ from taggit.models import Tag
 from .forms import CommentForm, EmailPostForm, PostForm, SearchForm
 from .models import Post, Comment
 
+from django.shortcuts import get_object_or_404
+from .models import Comment
+from .forms import CommentForm
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseForbidden
+
+@login_required
+def edit_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+
+    if request.user != comment.user:  # or check your comment ownership logic
+        return HttpResponseForbidden("You can't edit this comment.")
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            return redirect(comment.post.get_absolute_url())
+    else:
+        form = CommentForm(instance=comment)
+
+    return render(request, 'blog/post/edit_comment.html', {'form': form, 'comment': comment})
+
+
+@login_required
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+
+    if request.user != comment.user:
+        return HttpResponseForbidden("You can't delete this comment.")
+
+    if request.method == 'POST':
+        post_url = comment.post.get_absolute_url()
+        comment.delete()
+        return redirect(post_url)
+
+    return render(request, 'blog/post/delete_comment.html', {'comment': comment})
+
+
 def home(request):
     return render(request, "blog/base.html")
 
