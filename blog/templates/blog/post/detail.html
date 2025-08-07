@@ -29,6 +29,7 @@
       {{ total_comments }} comment{{ total_comments|pluralize }}
     </h2>
   {% endwith %}
+
   {% for comment in comments %}
     <div class="comment">
       <p class="info">
@@ -36,9 +37,17 @@
         {{ comment.created }}
       </p>
       {{ comment.body|linebreaks }}
+
+      {% if user.is_authenticated and user.username == comment.name %}
+        <p>
+          <a href="{% url 'blog:edit_comment' comment.id %}">Edit</a> |
+          <a href="{% url 'blog:delete_comment' comment.id %}">Delete</a>
+        </p>
+      {% endif %}
     </div>
   {% empty %}
     <p>There are no comments yet.</p>
   {% endfor %}
+
   {% include "blog/post/includes/comment_form.html" %}
 {% endblock %}
