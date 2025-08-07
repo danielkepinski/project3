@@ -35,32 +35,30 @@
     <p>{{ comment.body|linebreaks }}</p>
 
     {% if user.is_authenticated and comment.user == user %}
-      <form method="post" action="{% url 'blog:delete_comment' comment.id %}" style="display:inline;">
-        {% csrf_token %}
-        <button type="submit" onclick="return confirm('Are you sure you want to delete this comment?');">Delete</button>
-      </form>
+      <p><a href="{% url 'blog:comment_delete' comment.id %}">Delete</a></p>
     {% endif %}
   </div>
+{% empty %}
+  <p>No comments yet.</p>
 {% endfor %}
 
 
   <h3>Leave a comment</h3>
-  <form method="post" action="{% url 'blog:post_comment' post.id %}">
-    {% csrf_token %}
-    <p>
-      {{ form.name.label_tag }}<br>
-      {{ form.name }}
-    </p>
-    <p>
-      {{ form.email.label_tag }}<br>
-      {{ form.email }}
-    </p>
-    <p>
-      {{ form.body.label_tag }}<br>
-      {{ form.body }}
-    </p>
-    <p>
-      <button type="submit">Submit Comment</button>
-    </p>
-  </form>
-{% endblock %}
+<form method="post" action="{% url 'blog:post_comment' post.id %}">
+  {% csrf_token %}
+  <p>
+    {{ form.name.label_tag }}<br>
+    {{ form.name }}
+  </p>
+  <p>
+    {{ form.email.label_tag }}<br>
+    {{ form.email }}
+  </p>
+  <p>
+    {{ form.body.label_tag }}<br>
+    {{ form.body }}
+  </p>
+  <p>
+    <button type="submit">Submit Comment</button>
+  </p>
+</form>

@@ -97,16 +97,30 @@ def post_detail(request, year, month, day, post):
         },
     )
 
-@require_POST
+@login_required
 def post_comment(request, post_id):
     post = get_object_or_404(Post, id=post_id, status=Post.Status.PUBLISHED)
-    comment = None
-    form = CommentForm(data=request.POST)
-    if form.is_valid():
-        comment = form.save(commit=False)
-        comment.post = post
-        comment.save()
-    return redirect(post.get_absolute_url())  # Redirect to avoid form resubmission
+
+    if request.method == 'POST':
+        form = CommentForm(data=request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.user = request.user
+            # Overwrite form data with authenticated user's info
+            comment.name = request.user.get_full_name() or request.user.username
+            comment.email = request.user.email
+            comment.save()
+            return redirect(post.get_absolute_url())
+    else:
+        # Pre-fill form for authenticated user
+        initial_data = {
+            'name': request.user.get_full_name() or request.user.username,
+            'email': request.user.email
+        }
+        form = CommentForm(initial=initial_data)
+
+    return render(request, 'blog/post/comment.html', {'post': post, 'form': form})
 
 class PostListView(ListView):
     queryset = Post.published.all()
