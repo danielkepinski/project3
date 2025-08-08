@@ -136,6 +136,9 @@ Default Django admin interface, showing models such as Posts, Comments, Tags, an
 ![Wireframe of submit comment section](./blog/Readme/images/submitbutton.png)<br>
 A clean layout with name, email, and body fields stacked above a submit button.
 
+![wireframe of edit/delete in comment section](./blog/Readme/images/commenteditdelete.png)<br>
+A clean layout showing how a comment appears including edit and delete button
+
 ### Database Schema
 
 #### First Draft
