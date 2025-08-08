@@ -1,29 +1,28 @@
-from django.contrib.postgres.search import TrigramSimilarity
+from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import Count
-from django.shortcuts import render, redirect, get_object_or_404
-from django.views.decorators.http import require_POST
+from django.http import HttpResponseForbidden
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import ListView
 from taggit.models import Tag
 
+from django.contrib.postgres.search import TrigramSimilarity
+
 from .forms import CommentForm, EmailPostForm, PostForm, SearchForm
-from .models import Post, Comment
+from .models import Comment, Post
 
-from django.shortcuts import get_object_or_404
-from .models import Comment
-from .forms import CommentForm
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseForbidden
 
+# ----- EDIT COMMENT -----
 @login_required
 def edit_comment(request, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
 
-    if request.user != comment.user:  # or check your comment ownership logic
+    # allow the comment owner or staff
+    if not (request.user.is_staff or comment.user_id == request.user.id):
         return HttpResponseForbidden("You can't edit this comment.")
 
-    if request.method == 'POST':
+    if request.method == "POST":
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
             form.save()
@@ -31,16 +30,14 @@ def edit_comment(request, comment_id):
     else:
         form = CommentForm(instance=comment)
 
-    return render(request, 'blog/post/edit_comment.html', {'form': form, 'comment': comment})
+    return render(request, "blog/edit_comment.html", {"form": form, "comment": comment})
 
-
+# ----- DELETE COMMENT -----
 @login_required
 def delete_comment(request, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
 
-    is_owner = getattr(comment, "user_id", None) == request.user.id
-    legacy_owner = getattr(comment, "user_id", None) is None and comment.email == request.user.email
-
+    # Only allow staff or the comment owner to delete
     if not (request.user.is_staff or comment.user_id == request.user.id):
         return HttpResponseForbidden("You can't delete this comment.")
 
@@ -50,6 +47,7 @@ def delete_comment(request, comment_id):
         return redirect(post_url)
 
     return render(request, "blog/delete_comment.html", {"comment": comment})
+
 
 
 def home(request):
