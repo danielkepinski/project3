@@ -48,7 +48,7 @@ def delete_comment(request, comment_id):
         comment.delete()
         return redirect(post_url)
 
-    return render(request, 'blog/post/delete_comment.html', {'comment': comment})
+    return render(request, 'blog/delete_comment.html', {'comment': comment})
 
 
 def home(request):
