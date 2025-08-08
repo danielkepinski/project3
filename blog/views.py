@@ -42,7 +42,7 @@ def delete_comment(request, comment_id):
     legacy_owner = getattr(comment, "user_id", None) is None and comment.email == request.user.email
 
     if not (request.user.is_staff or comment.user_id == request.user.id):
-    return HttpResponseForbidden("You can't delete this comment.")
+        return HttpResponseForbidden("You can't delete this comment.")
 
     if request.method == "POST":
         post_url = comment.post.get_absolute_url()
