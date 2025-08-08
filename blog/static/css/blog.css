@@ -79,7 +79,7 @@ nav span {
     display: block;
     float: right;
     width: 30%;
-    padding: 12px 0;
+    padding: 1rem;
     min-height: 48px;
     background: #e9ebed;
     height: 100%;
@@ -182,26 +182,6 @@ button.edit-btn:hover {
     background: #004777;
 }
 
-/* Cancel Button */
-a.cancel-btn {
-    font-weight: bold;
-    background: #ccc;
-    color: #1c1c1c;
-    padding: 10px 20px;
-    font-size: 14px;
-    text-transform: uppercase;
-    border-radius: 4px;
-    min-height: 44px;
-    display: inline-flex;
-    align-items: center;
-    text-decoration: none;
-    margin-left: 10px;
-    transition: background 0.3s ease;
-}
-
-a.cancel-btn:hover {
-    background: #999;
-}
 
 /* Grouping for form buttons */
 .comment-actions {
