@@ -34,21 +34,33 @@ def edit_comment(request, comment_id):
     return render(request, 'blog/post/edit_comment.html', {'form': form, 'comment': comment})
 
 
+# backfill for legacy comments
+# This view allows users to delete comments they own or that are legacy comments
+for c in Comment.objects.filter(user__isnull=True).exclude(email=""):
+    u = User.objects.filter(email=c.email).first()
+    if u:
+        c.user = u
+        c.save(update_fields=["user"])
+    if not (request.user.is_staff or comment.user_id == request.user.id):
+    return HttpResponseForbidden("You can't delete this comment.")
+
 
 @login_required
 def delete_comment(request, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
 
-    # Only allow the user who made the comment to delete it
-    if comment.user != request.user:
+    is_owner = getattr(comment, "user_id", None) == request.user.id
+    legacy_owner = getattr(comment, "user_id", None) is None and comment.email == request.user.email
+
+    if not (request.user.is_staff or is_owner or legacy_owner):
         return HttpResponseForbidden("You can't delete this comment.")
 
-    if request.method == 'POST':
+    if request.method == "POST":
         post_url = comment.post.get_absolute_url()
         comment.delete()
         return redirect(post_url)
 
-    return render(request, 'blog/delete_comment.html', {'comment': comment})
+    return render(request, "blog/delete_comment.html", {"comment": comment})
 
 
 def home(request):
