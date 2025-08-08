@@ -34,12 +34,18 @@
     </p>
     <p>{{ comment.body|linebreaks }}</p>
 
-    {% if user.is_authenticated and (comment.user_id == user.id or user.is_staff) %}
+    {% if user.is_staff %}
+  <form method="post" action="{% url 'blog:delete_comment' comment.id %}" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+  </form>
+{% elif user.is_authenticated and comment.user_id == user.id %}
   <form method="post" action="{% url 'blog:delete_comment' comment.id %}" style="display:inline;">
     {% csrf_token %}
     <button type="submit">Delete</button>
   </form>
 {% endif %}
+
 
 
   <h3>Leave a comment</h3>
