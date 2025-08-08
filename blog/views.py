@@ -18,8 +18,10 @@ from .models import Comment, Post
 def edit_comment(request, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
 
-    # allow the comment owner or staff
-    if not (request.user.is_staff or comment.user_id == request.user.id):
+    is_owner = (comment.user_id == request.user.id)
+    legacy_owner = (comment.user_id is None) and bool(comment.email) and (comment.email == request.user.email)
+
+    if not (request.user.is_staff or is_owner or legacy_owner):
         return HttpResponseForbidden("You can't edit this comment.")
 
     if request.method == "POST":
