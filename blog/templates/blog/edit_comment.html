@@ -1,12 +1,18 @@
 {% extends "blog/base.html" %}
-{% block title %}Edit Comment{% endblock %}
+{% block title %}Edit comment{% endblock %}
 
 {% block content %}
-  <h2>Edit Comment</h2>
+  <h1>Edit your comment</h1>
+
   <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Update</button>
+    {{ form.non_field_errors }}
+    <p>
+      {{ form.body.label_tag }}<br>
+      {{ form.body }}
+      {{ form.body.errors }}
+    </p>
+    <button type="submit">Save changes</button>
+    <a href="{{ comment.post.get_absolute_url }}">Cancel</a>
   </form>
-  <p><a href="{{ comment.post.get_absolute_url }}">Cancel</a></p>
 {% endblock %}

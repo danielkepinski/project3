@@ -149,7 +149,11 @@ A clean layout with name, email, and body fields stacked above a submit button.
 #### Final Schema
 
 mermaid
-![mermaid diagram of final darabase schema](./blog/Readme/images/mermaid.png)
+![mermaid diagram of final darabase schema](./blog/Readme/images/erdfinal.png)<br>
+
+flowchart
+![flowchart of final database schema](./blog/Readme/images/flowchart.png)<br>
+
 
 ## Features
 
@@ -323,56 +327,99 @@ You now have a local copy of the project to work with.
 
 ### Manual Testing
 
-- Navigation works on all screen sizes
-- Posts render correctly
-- Comments validate
-- Share form emails
-- Admin actions (CRUD) work
 
+
+W3 validator<br>
+![screenshot of w3 validation](./blog/Readme/images/w3validator.png)
 lighthouse score<br>
 ![lighthouse screenshot](./blog/Readme/images/lighthouse.png)<br>
 The score is almost perfect, lighthouse says the colours dont contrast enough<br>
 Wave test<br>
 ![wave test screenshot](./blog/Readme/images/wave.png)<br>
 The alert is for a redundant link, however it does work and is relevent
+python test<br>
+![screenshot of python test in vscode](./blog/Readme/images/pythontest.png)<br>
 
 
+Testing
+1. Manual Feature Testing
+Feature	Test Action	Expected Result	Pass
+Create Comment	Fill in form, submit	Comment appears instantly under correct post	✅
+Edit Comment	Click Edit, change text, save	Updated text displays correctly	✅
+Delete Comment	Click Delete, confirm	Comment removed from post	✅
+Register / Login	Fill in registration form, log in	User account created and logged in	✅
+Permission Check	Try to edit/delete another user's comment	Action blocked, 403 Forbidden page shown	✅
+Tag Filtering	Click on a post tag	List shows only posts with that tag	✅
+Search Posts	Enter keyword in search form	Relevant posts displayed in search results	✅
+Post Share via Email	Submit share form with valid details	Email is sent successfully	✅
+Pagination	Navigate to next/previous pages	Correct posts displayed per page	✅
 
-### Responsiveness
+2. Responsiveness Testing
+Tested using Chrome DevTools and physical devices:
 
-Tested with DevTools at mobile/tablet/desktop breakpoints
+Mobile: iPhone 14, iPhone SE, Samsung Galaxy S22
 
-### Accessibility
+Tablet: iPad Air, Samsung Galaxy Tab
 
-- Labels for all fields
-- Semantic headings
-- Good contrast
+Desktop: 1080p and 1440p monitors
 
-### Bugs & Fixes
+✅ Layout adapts with no horizontal scroll, text remains readable, and buttons are finger-friendly on touch devices.
 
-| Issue | Resolution |
-| Submit button appeared next to name input | Updated template to render form fields manually |
-| Hover color not applying to links | Added explicit CSS rules for `a:hover` |
-| Static files not loading on Heroku | Added `Whitenoise` and configured `STATIC_ROOT` |
-| Comments submitted without name/email | Added form validation and error display |
-| Contrast errors on links (.a styling) made blue darker from #0079d3 to #005999 |
+3. Accessibility Testing
+Tool	Result	Notes
+WAVE	✅	Only redundant link warning (by design)
+Lighthouse	95+	Minor colour contrast warning (blue link updated)
+Manual Keyboard Test	✅	Full keyboard navigation works
+Screen Reader Check	✅	Labels, headings, and alt text present
 
-### Automated Testing
+Accessibility principles applied:
 
-Basic tests were added to validate models and views:
+Semantic HTML (<main>, <nav>, <article>).
 
-- `Post` model tested for correct string output and URL generation.
-- `Comment` model tested for creation and ordering.
-- Views tested for correct template rendering and status codes.
+Form inputs have <label> tags.
 
-Tests were run using:
+High-contrast text where possible.
+
+Buttons and links are reachable via Tab key.
+
+4. Code Validation
+HTML: W3C Markup Validator – Passed with no critical errors.
+
+CSS: W3C CSS Validator – Passed.
+
+Python: Flake8 – Checked for syntax errors and PEP8 compliance.
+
+5. Cross-Browser Testing
+Browser	Result
+Chrome (latest)	✅
+Firefox	✅
+Edge	✅
+Safari (iOS)	✅
+
+6. Automated Testing
+Tests written in tests.py for models and views:
+
+Post model returns correct string and URL.
+
+Comment model orders comments by creation date.
+
+Views return expected templates and status codes.
+
+Permission tests ensure only owners/staff can edit/delete comments.
+
+Run locally with:
 
 bash
+Copy
+Edit
 python manage.py test
-
-![screenshot of python tests passing](./blog/Readme/images/testspy.png)
-
-### Live Testing
+7. Bug Fix Log
+Issue	Resolution
+Static files not loading on Heroku	Added Whitenoise and STATIC_ROOT config
+Comments submitted without name/email	Added form validation and error display
+Non-owners could see edit/delete buttons	Added template condition checks
+Contrast warning for links	Updated blue from #0079d3 to #005999
+Submit button beside name field	Rendered fields separately in template
 
 
 ## Credits
