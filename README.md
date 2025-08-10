@@ -52,7 +52,7 @@ DansBlog was created as my third milestone project for the Code Institute’s Le
 
 ### Project Goals
 
-The goal of the DansBlog project is to create a personal blogging platform where I can share posts, ideas, and updates in a simple and organized way. I built DansBlog to apply and demonstrate the skills I've learned in Django development, including working with models, views, templates, and admin customization. This project helps me understand the fundamentals of building a dynamic website and serves as a foundation for more complex web applications in the future.
+The goal of the DansBlog project is to create a personal blogging platform where I can share posts, ideas, and updates in a simple and organised way. I built DansBlog to apply and demonstrate the skills I've learned in Django development, including working with models, views, templates, and admin customization. This project helps me understand the fundamentals of building a dynamic website and serves as a foundation for more complex web applications in the future.
 
 ### User Stories
 
@@ -63,44 +63,44 @@ People around the world who know me and want to stay updated on what I’m doing
 #### First Time Visitor Goals
 
 As a first time user of the site I want to be able to:
-1. Lands on the homepage and sees a clean list of blog posts with titles, summaries, and dates.
-2. Clicks on a post to view full content and comments.
-3. May navigate to other posts via similar post suggestions.
-4. If interested, leaves a comment by filling out the name, email, and body fields and clicking "Submit Comment".
+1. Land on the homepage and see a clean list of blog posts with titles, summaries, and dates.
+2. Click on a post to view full content and comments.
+3. Navigate to other posts via similar post suggestions.
+4. If interested, leave a comment by registering as a user typing a comment and clicking "Submit Comment".
 5. Can use the browser’s back or main navigation to explore more posts.
 
 #### Returning Visitor Goals
 
 As a returning registered user of the site I want to be able to:
 
-1. Visits the site directly or through a shared link.
-2. Navigates to specific posts to read updates or new content.
-3. Reads through existing comments and adds their own via the comment form.
-4. May choose to share a post using the “Share this post” feature, filling in an email form.
-5. Engages regularly as the blog is updated with new content.
+1. Visit the site directly or through a shared link.
+2. Navigate to specific posts to read updates or new content.
+3. Read through existing comments and adds their own via the comment form.
+4. Choose to share a post using the “Share this post” feature, filling in an email form.
+5. Engage regularly as the blog is updated with new content.
 
 
 #### Admin User
 
 As an administrator for the site I want to be able to:
 
-1. Logs into the Django admin panel using secure credentials.
-2. Views and manages all Posts, Comments, Tags, and Users via the default admin UI.
-3. Adds, edits, or deletes posts as necessary.
-4. Moderates comments by reviewing or removing content that violates community guidelines (manual moderation).
-5. Plans to implement additional moderation tools in future iterations.
+1. Log into the Django admin panel using secure credentials.
+2. View and manages all Posts, Comments, Tags, and Users via the default admin UI.
+3. Add, edit, or delete posts as necessary.
+4. Moderate comments by reviewing or removing content that violates community guidelines (manual moderation).
+5. Plan to implement additional moderation tools in future iterations.
 
 
 ## Design
 
 ### Colour Scheme
 
-I have taken inspiration from the header image for the colour palette and chosen colours that complement each other. My colour choices came from my love of using reddit!
+I have taken inspiration from the header image for the colour palette and chosen colours that complement each other. My colour choices came from my love of using Reddit!
 ![colour pallete for website](./blog/Readme/images/projectcolors.png)
 
 ### Typography
 
--DansBlog uses two main system fonts to ensure fast loading and broad compatibility:
+-Dansblog uses two main system fonts to ensure fast loading and broad compatibility:
 
 Helvetica (with a fallback to sans-serif) is used for the body text. It's clean, modern, and highly readable—ideal for accessibility across all devices.
 
@@ -128,7 +128,7 @@ Default Django admin interface, showing models such as Posts, Comments, Tags, an
 Responsive layout of the homepage, with posts stacked vertically and a compact header.
 
 ![Wireframe of Mobile blog Page](./blog/Readme/images/mobileblog.png)<br>
-Responsive layout of the homepage, with posts stacked vertically and a compact header, And a selected blog post.
+Responsive layout of the homepage, with posts stacked vertically, a compact header, and a selected blog post.
 
 ![Wireframe of Mobile admin Page](./blog/Readme/images/mobileadmin.png)<br>
 Default Django admin interface, showing models such as Posts, Comments, Tags, and Users.
@@ -137,16 +137,16 @@ Default Django admin interface, showing models such as Posts, Comments, Tags, an
 A clean layout with name, email, and body fields stacked above a submit button.
 
 ![wireframe of edit/delete in comment section](./blog/Readme/images/commenteditdelete.png)<br>
-A clean layout showing how a comment appears including edit and delete button
+A clean layout showing how a comment appears including edit and delete button.
 
 ![wireframe of edit comment section](<blog/Readme/images/edit comment.png>)<br>
-a screenshot of edit comment section
+a screenshot of edit comment section.
 
 ![wireframe of login page](blog/Readme/images/login.png)<br>
-a screeshot for my login page for regular users
+a screeshot for my login page for regular users.
 
 ![wireframe of registration page](blog/Readme/images/register.png)<br>
-registration page
+registration page.
 
 ### Database Schema
 
@@ -169,7 +169,7 @@ flowchart
 
 ## Features
 
-DansBlog offers a clear and minimal blogging experience, where users can browse, read, and comment on posts. The design is clean and responsive, prioritizing readability and usability on both desktop and mobile devices.
+Dansblog offers a clear and minimal blogging experience, where users can browse, read, and comment on posts. The design is clean and responsive, prioritising readability and usability on both desktop and mobile devices.
 
 ### Elements Found on Each Page
 
@@ -200,7 +200,7 @@ DansBlog offers a clear and minimal blogging experience, where users can browse,
 
 ### Future Implementations
 - **Comment Moderation Workflow**: Add approval flow before comments are published.
-- **Post Categories**: Organize posts by category for better filtering.
+- **Post Categories**: Organise posts by category for better filtering.
 - **Search Functionality**: Enable keyword-based search across blog content.
 - **Pagination Controls**: Refine post listing navigation.
 - **Image Uploads**: Let users attach images to posts or comments.
@@ -212,8 +212,8 @@ DansBlog offers a clear and minimal blogging experience, where users can browse,
 
 DansBlog follows basic accessibility principles to ensure a usable experience for all users:
 
-- Semantic HTML elements are used for structure (e.g., `<main>`, `<article>`, `<nav>`).
-- Font choices prioritize readability with sufficient contrast.
+- Semantic HTML elements are used for structure (e.g., `main`, `article`, `nav`).
+- Font choices prioritise readability with sufficient contrast.
 - Form fields have associated labels for screen readers.
 - The site layout adapts to all screen sizes with responsive design.
 - Submit buttons and links are fully keyboard-accessible.
@@ -380,6 +380,7 @@ Tablet: iPad Air, Samsung Galaxy Tab
 Desktop: 1080p and 1440p monitors
 
 ✅ Layout adapts with no horizontal scroll, text remains readable, and buttons are finger-friendly on touch devices.
+<br>
 
 3. - **Accessibility Testing**
 Tool	Result	Notes
@@ -394,30 +395,32 @@ Semantic HTML<br>
 Form inputs have label tags.<br>
 High-contrast text where possible.<br>
 Buttons and links are reachable via Tab key.<br>
+<br>
 
 4. - **Code Validation**
-HTML: W3C Markup Validator – Passed with no critical errors.
-CSS: W3C CSS Validator – Passed.
-Python: Flake8 – Checked for syntax errors and PEP8 compliance.
+HTML: W3C Markup Validator – Passed with no critical errors.<br>
+CSS: W3C CSS Validator – Passed.<br>
+Python: Flake8 – Checked for syntax errors and PEP8 compliance.<br>
+<br>
 
 5. - **Cross-Browser Testing**
-Browser	Result
-Chrome (latest)	✅
-Firefox	✅
-Edge	✅
-Safari (iOS)	✅
+Browser	Result<br>
+Chrome (latest)	✅<br>
+Firefox	✅<br>
+Edge	✅<br>
+Safari (iOS)	✅<br>
+<br>
 
-6. 
-Automated Testing
-Tests written in tests.py for models and views:
+6. - **Automated Testing**
+Tests written in tests.py for models and views:<br>
 
-Post model returns correct string and URL.
+Post model returns correct string and URL.<br>
 
-Comment model orders comments by creation date.
+Comment model orders comments by creation date.<br>
 
-Views return expected templates and status codes.
+Views return expected templates and status codes.<br>
 
-Permission tests ensure only owners/staff can edit/delete comments.
+Permission tests ensure only owners/staff can edit/delete comments.<br>
 
 Run locally with:
 
@@ -425,15 +428,15 @@ bash
 Copy
 Edit
 python manage.py test
+<br>
 
-7. 
-Bug Fix Log
-Issue	Resolution
-Static files not loading on Heroku	Added Whitenoise and STATIC_ROOT config
-Comments submitted without name/email	Added form validation and error display
-Non-owners could see edit/delete buttons	Added template condition checks
-Contrast warning for links	Updated blue from #0079d3 to #005999
-Submit button beside name field	Rendered fields separately in template
+7. - **Bug Fix Log**
+Issue	Resolution<br>
+Static files not loading on Heroku	Added Whitenoise and STATIC_ROOT config<br>
+Comments submitted without name/email	Added form validation and error display<br>
+Non-owners could see edit/delete buttons	Added template condition checks<br>
+Contrast warning for links	Updated blue from #0079d3 to #005999<br>
+Submit button beside name field	Rendered fields separately in template<br>
 
 
 ## Credits
@@ -452,9 +455,9 @@ Submit button beside name field	Rendered fields separately in template
 
 ### Media
 
-- Wireframes were generated using ![Figma](https://www.figma.com/)
+- Wireframes were generated using [Figma](https://www.figma.com/)
 - Color palette was chosen to match the aesthetic inspired by Reddit.
-- Icons and default favicons were sourced from ![Font Awesome](https://fontawesome.com/).
+- Icons and default favicons were sourced from [Font Awesome](https://fontawesome.com/).
 
 ### Acknowledgments
 
