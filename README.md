@@ -358,8 +358,7 @@ python test<br>
 
 
 Testing
-1.
- Manual Feature Testing
+1. - **Manual Feature Testing**
 Feature	Test Action	Expected Result	Pass
 Create Comment	Fill in form, submit	Comment appears instantly under correct post	✅<br>
 Edit Comment	Click Edit, change text, save	Updated text displays correctly	✅<br>
@@ -371,8 +370,7 @@ Search Posts	Enter keyword in search form	Relevant posts displayed in search res
 Post Share via Email	Submit share form with valid details	Email is sent successfully	✅<br>
 Pagination	Navigate to next/previous pages	Correct posts displayed per page	✅<br>
 
-2. 
-Responsiveness Testing
+2. - **Responsiveness Testing**
 Tested using Chrome DevTools and physical devices:
 
 Mobile: iPhone 14, iPhone SE, Samsung Galaxy S22
@@ -383,8 +381,7 @@ Desktop: 1080p and 1440p monitors
 
 ✅ Layout adapts with no horizontal scroll, text remains readable, and buttons are finger-friendly on touch devices.
 
-3. 
-Accessibility Testing
+3. - **Accessibility Testing**
 Tool	Result	Notes
 WAVE	✅	Only redundant link warning (by design)<br>
 Lighthouse	95+	Minor colour contrast warning (blue link updated)<br>
@@ -398,14 +395,12 @@ Form inputs have label tags.<br>
 High-contrast text where possible.<br>
 Buttons and links are reachable via Tab key.<br>
 
-4.
- Code Validation
+4. - **Code Validation**
 HTML: W3C Markup Validator – Passed with no critical errors.
 CSS: W3C CSS Validator – Passed.
 Python: Flake8 – Checked for syntax errors and PEP8 compliance.
 
-5. 
-Cross-Browser Testing
+5. - **Cross-Browser Testing**
 Browser	Result
 Chrome (latest)	✅
 Firefox	✅
