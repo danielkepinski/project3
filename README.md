@@ -189,7 +189,7 @@ DansBlog offers a clear and minimal blogging experience, where users can browse,
 - Includes a comment section where users can view and submit comments.
 
 **Comment Section**
-- Users can leave a comment by entering their name, email, and message.
+- Users can leave a comment by registering an account.
 - Comments display the name, date, and message content.
 - Submitted comments are immediately visible if active.
 
@@ -199,8 +199,6 @@ DansBlog offers a clear and minimal blogging experience, where users can browse,
 - Posts can be created, edited, or deleted from the admin dashboard.
 
 ### Future Implementations
-
-- **User Registration & Login**: Allow users to create accounts and log in.
 - **Comment Moderation Workflow**: Add approval flow before comments are published.
 - **Post Categories**: Organize posts by category for better filtering.
 - **Search Functionality**: Enable keyword-based search across blog content.
@@ -260,6 +258,9 @@ DansBlog follows basic accessibility principles to ensure a usable experience fo
 - **Heroku** – Cloud platform used to deploy the project.
 - **Google Chrome DevTools** – For inspecting layout and testing responsiveness.
 - **Figma** - For creating wireframes.
+- **w3 validation** - for validating my html code and css
+- **wave** - for checking my accessibility
+
 
 ---
 
@@ -342,7 +343,10 @@ You now have a local copy of the project to work with.
 
 
 W3 validator<br>
-![screenshot of w3 validation](./blog/Readme/images/w3validator.png)
+![screenshot of w3 validation for html](./blog/Readme/images/w3validator.png)<br>
+html validation
+![screenshot of w3 validation for css](blog/Readme/images/cssvalidated.png)<br>
+css validation
 lighthouse score<br>
 ![lighthouse screenshot](./blog/Readme/images/lighthouse.png)<br>
 The score is almost perfect, lighthouse says the colours dont contrast enough<br>
@@ -354,19 +358,21 @@ python test<br>
 
 
 Testing
-1. Manual Feature Testing
+1.
+ Manual Feature Testing
 Feature	Test Action	Expected Result	Pass
-Create Comment	Fill in form, submit	Comment appears instantly under correct post	✅
-Edit Comment	Click Edit, change text, save	Updated text displays correctly	✅
-Delete Comment	Click Delete, confirm	Comment removed from post	✅
-Register / Login	Fill in registration form, log in	User account created and logged in	✅
-Permission Check	Try to edit/delete another user's comment	Action blocked, 403 Forbidden page shown	✅
-Tag Filtering	Click on a post tag	List shows only posts with that tag	✅
-Search Posts	Enter keyword in search form	Relevant posts displayed in search results	✅
-Post Share via Email	Submit share form with valid details	Email is sent successfully	✅
-Pagination	Navigate to next/previous pages	Correct posts displayed per page	✅
+Create Comment	Fill in form, submit	Comment appears instantly under correct post	✅<br>
+Edit Comment	Click Edit, change text, save	Updated text displays correctly	✅<br>
+Delete Comment	Click Delete, confirm	Comment removed from post	✅<br>
+Register / Login	Fill in registration form, log in	User account created and logged in	✅<br>
+Permission Check	Try to edit/delete another user's comment	Action blocked, 403 Forbidden page shown	✅<br>
+Tag Filtering	Click on a post tag	List shows only posts with that tag	✅<br>
+Search Posts	Enter keyword in search form	Relevant posts displayed in search results	✅<br>
+Post Share via Email	Submit share form with valid details	Email is sent successfully	✅<br>
+Pagination	Navigate to next/previous pages	Correct posts displayed per page	✅<br>
 
-2. Responsiveness Testing
+2. 
+Responsiveness Testing
 Tested using Chrome DevTools and physical devices:
 
 Mobile: iPhone 14, iPhone SE, Samsung Galaxy S22
@@ -377,38 +383,37 @@ Desktop: 1080p and 1440p monitors
 
 ✅ Layout adapts with no horizontal scroll, text remains readable, and buttons are finger-friendly on touch devices.
 
-3. Accessibility Testing
+3. 
+Accessibility Testing
 Tool	Result	Notes
-WAVE	✅	Only redundant link warning (by design)
-Lighthouse	95+	Minor colour contrast warning (blue link updated)
-Manual Keyboard Test	✅	Full keyboard navigation works
-Screen Reader Check	✅	Labels, headings, and alt text present
+WAVE	✅	Only redundant link warning (by design)<br>
+Lighthouse	95+	Minor colour contrast warning (blue link updated)<br>
+Manual Keyboard Test	✅	Full keyboard navigation works<br>
+Screen Reader Check	✅	Labels, headings, and alt text present<br>
 
 Accessibility principles applied:
 
-Semantic HTML (<main>, <nav>, <article>).
+Semantic HTML<br>
+Form inputs have label tags.<br>
+High-contrast text where possible.<br>
+Buttons and links are reachable via Tab key.<br>
 
-Form inputs have <label> tags.
-
-High-contrast text where possible.
-
-Buttons and links are reachable via Tab key.
-
-4. Code Validation
+4.
+ Code Validation
 HTML: W3C Markup Validator – Passed with no critical errors.
-
 CSS: W3C CSS Validator – Passed.
-
 Python: Flake8 – Checked for syntax errors and PEP8 compliance.
 
-5. Cross-Browser Testing
+5. 
+Cross-Browser Testing
 Browser	Result
 Chrome (latest)	✅
 Firefox	✅
 Edge	✅
 Safari (iOS)	✅
 
-6. Automated Testing
+6. 
+Automated Testing
 Tests written in tests.py for models and views:
 
 Post model returns correct string and URL.
@@ -425,7 +430,9 @@ bash
 Copy
 Edit
 python manage.py test
-7. Bug Fix Log
+
+7. 
+Bug Fix Log
 Issue	Resolution
 Static files not loading on Heroku	Added Whitenoise and STATIC_ROOT config
 Comments submitted without name/email	Added form validation and error display
