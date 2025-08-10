@@ -142,6 +142,11 @@ A clean layout showing how a comment appears including edit and delete button
 ![wireframe of edit comment section](<blog/Readme/images/edit comment.png>)<br>
 a screenshot of edit comment section
 
+![wireframe of login page](blog/Readme/images/login.png)<br>
+a screeshot for my login page for regular users
+
+![wireframe of registration page](blog/Readme/images/register.png)<br>
+registration page
 
 ### Database Schema
 
