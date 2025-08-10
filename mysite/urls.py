@@ -3,6 +3,7 @@ from django.urls import path, include
 from django.contrib.sitemaps.views import sitemap
 from blog import views as blog_views
 from .sitemaps import PostSitemap  # your sitemap class
+from django.contrib.auth.views import LogoutView
 
 sitemaps = {
     'posts': PostSitemap,
@@ -20,7 +21,7 @@ urlpatterns = [
     # Accounts and auth
     path('accounts/', include('accounts.urls', namespace='accounts')),  # custom register view
     path('accounts/', include('django.contrib.auth.urls')),  # login/logout/password views
-
+    path('accounts/logout/', LogoutView.as_view(next_page='blog:blog-home'), name='logout'),
     # Sitemap
     path(
         'sitemap.xml',

@@ -141,6 +141,8 @@ A clean layout showing how a comment appears including edit and delete button
 
 ![wireframe of edit comment section](<blog/Readme/images/edit comment.png>)<br>
 a screenshot of edit comment section
+
+
 ### Database Schema
 
 #### First Draft

@@ -137,3 +137,4 @@ LOGIN_URL = 'login'
 # Authentication redirects
 LOGIN_REDIRECT_URL = 'blog-home'
 LOGIN_URL = 'login'
+LOGOUT_REDIRECT_URL = 'blog:blog-home'

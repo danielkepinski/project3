@@ -7,12 +7,16 @@
   <form method="post">
     {% csrf_token %}
     {{ form.non_field_errors }}
+    
     <p>
       {{ form.body.label_tag }}<br>
       {{ form.body }}
       {{ form.body.errors }}
     </p>
-    <button type="submit">Save changes</button>
-    <a href="{{ comment.post.get_absolute_url }}">Cancel</a>
+
+    <div class="comment-actions">
+      <button type="submit" class="edit-btn">💾 Save changes</button>
+      <a href="{{ comment.post.get_absolute_url }}" class="cancel-btn">Cancel</a>
+    </div>
   </form>
 {% endblock %}
