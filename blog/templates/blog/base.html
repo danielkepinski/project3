@@ -27,7 +27,10 @@
         <nav>
     {% if user.is_authenticated %}
   <span>Welcome, {{ user.username }}!</span>
-  <a href="{% url 'logout' %}">Logout</a>
+  <form method="post" action="{% url 'logout' %}" style="display:inline;">
+  {% csrf_token %}
+  <button type="submit" class="logout-btn">Logout</button>
+</form>
 {% else %}
   <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
   <a href="{% url 'accounts:register' %}"><i class="fa-solid fa-address-card"></i>Register</a>
