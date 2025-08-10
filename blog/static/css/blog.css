@@ -204,6 +204,12 @@ button.edit-btn:hover {
     color: #666;
 }
 
+.comment-heading {
+    color: #ff4500; 
+    font-weight: normal;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
 /* logout button */
 
 .logout-btn{
