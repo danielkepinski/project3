@@ -2,8 +2,17 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.sitemaps.views import sitemap
 from blog import views as blog_views
-from .sitemaps import PostSitemap  # your sitemap class
+from .sitemaps import PostSitemap 
 from django.contrib.auth.views import LogoutView
+from django.conf.urls import handler404
+from django.shortcuts import render
+
+# Custom 404 handler
+def custom_page_not_found(request, exception):
+    return render(request, "blog/404.html", status=404)
+
+handler404 = custom_page_not_found
+
 
 sitemaps = {
     'posts': PostSitemap,

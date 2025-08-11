@@ -86,13 +86,19 @@ This project is both a portfolio piece and a practical tool, demonstrating my ca
 
 #### Target Audience
 
-People around the world who know me and want to stay updated on what I’m doing.
+Target Audience
+* Readers interested in my posts and updates.
+
+* Users who want to engage by leaving comments.
+
+* Site owners who want full control over posts and community interaction.
 
 #### First Time Visitor Goals
 
 As a first time user of the site I want to be able to:
 1. Land on the homepage and see a clean list of blog posts with titles, summaries, and dates.
 2. Click on a post to view full content and comments.
+3. Quickly find posts that interest me through tags or titles.
 3. Navigate to other posts via similar post suggestions.
 4. If interested, leave a comment by registering as a user typing a comment and clicking "Submit Comment".
 5. Can use the browser’s back or main navigation to explore more posts.
@@ -106,6 +112,8 @@ As a returning registered user of the site I want to be able to:
 3. Read through existing comments and adds their own via the comment form.
 4. Choose to share a post using the “Share this post” feature, filling in an email form.
 5. Engage regularly as the blog is updated with new content.
+6. Quickly see new posts since my last visit.
+
 
 
 #### Admin User
@@ -113,10 +121,10 @@ As a returning registered user of the site I want to be able to:
 As an administrator for the site I want to be able to:
 
 1. Log into the Django admin panel using secure credentials.
-2. View and manages all Posts, Comments, Tags, and Users via the default admin UI.
+2. Manage posts, tags, and comments easily through the Django admin interface.
 3. Add, edit, or delete posts as necessary.
 4. Moderate comments by reviewing or removing content that violates community guidelines (manual moderation).
-5. Plan to implement additional moderation tools in future iterations.
+5. Add or remove features without rebuilding the whole platform.
 
 
 ## Design

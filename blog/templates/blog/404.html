@@ -1,0 +1,13 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Page Not Found{% endblock %}
+
+{% block content %}
+  <div style="text-align:center; padding: 50px;">
+    <h1 style="color:#ff4500;">Oops! Page not found (404)</h1>
+    <p>Sorry, we couldn't find what you were looking for.</p>
+    <a href="{% url 'blog:blog-home' %}" style="color:#005999; text-decoration:underline;">
+      Go back to homepage
+    </a>
+  </div>
+{% endblock %}
