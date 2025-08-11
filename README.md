@@ -5,7 +5,7 @@
 
 ![responsive mockup](./blog/Readme/images/responsive.png)
 
-DansBlog was created as my third milestone project for the Code Institute’s Level 5 Diploma in Web Application Development. The project demonstrates a simple, personal blog built using Django, with CRUD functionality for comments, tag filtering, and admin control.
+DansBlog is a responsive, accessible blogging platform built to showcase my Django development skills while meeting a real need for a simple, user-friendly blog with comment moderation.
 
 ## CONTENTS
 
@@ -52,7 +52,35 @@ DansBlog was created as my third milestone project for the Code Institute’s Le
 
 ### Project Goals
 
-The goal of the DansBlog project is to create a personal blogging platform where I can share posts, ideas, and updates in a simple and organised way. I built DansBlog to apply and demonstrate the skills I've learned in Django development, including working with models, views, templates, and admin customization. This project helps me understand the fundamentals of building a dynamic website and serves as a foundation for more complex web applications in the future.
+Project Goals
+The rationale behind DansBlog is to create a responsive, secure, and easy-to-use blogging platform that enables post sharing, discussion, and moderation, while demonstrating my ability to design, build, and deploy a full-stack Django application.
+
+The need:
+Many blogging platforms are either overly complex for small personal projects or lack the flexibility to implement custom features like comment editing, tagging, or moderation. For this milestone, I wanted to create a streamlined alternative—something easy for both readers and content creators, while giving me full control over the features.
+
+Why this project is valuable:
+
+It combines core Django skills: models, views, templates, forms, authentication, and deployment.
+
+It uses a real-world use case, a functional blog with CRUD operations for both posts and comments.
+
+It is fully responsive and accessible, catering to users across devices and abilities.
+
+It is scalable, allowing for new features such as image uploads, like systems, or advanced search.
+
+How DansBlog solves the problem:
+
+A minimal, distraction-free design makes reading and navigating posts simple.
+
+CRUD functionality for comments ensures readers can contribute and manage their own content.
+
+Tag filtering helps users quickly find relevant topics.
+
+The admin panel gives site owners full control over posts, tags, and comments.
+
+Security best practices (CSRF tokens, authentication checks, and permissions) are applied to protect data.
+
+This project is both a portfolio piece and a practical tool, demonstrating my capability to turn an idea into a live, maintainable web application.
 
 ### User Stories
 
@@ -462,7 +490,7 @@ Submit button beside name field	Rendered fields separately in template<br>
 ### Acknowledgments
 
 - Thanks to the **Code Institute** for providing the structure, guidance, and marking criteria for this project.
-- Special thanks to **Spencer** and **Jessica** for being absolute diamonds and reassuring me i can do this!
+- Special thanks to **Spencer** and **Jessica** for being absolute diamonds and reassuring me I can do this!
 - Special thanks to the **Django community** for their excellent documentation and support.
 - Thanks to **Antonio Mele** for his Django book, which was instrumental in shaping this blog.
 - Finally, thank you to **friends and family** who tested the site and gave feedback during development.
