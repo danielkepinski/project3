@@ -23,7 +23,7 @@
     <!-- HEADER + NAV -->
     <header>
         <h1><a href="{% url 'blog:blog-home' %}">DansBlog</a></h1>
-        <nav>
+        <nav style="background:#005999; padding:12px 20px;">
             {% if user.is_authenticated %}
                 <span>Welcome, {{ user.username }}!</span>
                 <form method="post" action="{% url 'logout' %}" style="display:inline;">
