@@ -4,7 +4,6 @@ from django.contrib.sitemaps.views import sitemap
 from blog import views as blog_views
 from .sitemaps import PostSitemap 
 from django.contrib.auth.views import LogoutView
-from django.conf.urls import handler404
 from django.shortcuts import render
 
 # Custom 404 handler
